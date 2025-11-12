@@ -1,15 +1,9 @@
-
 import { GoogleGenAI } from "@google/genai";
 import { Salesperson, CalculatedMetrics } from '../types';
 
 // The API key is sourced from the environment variable `process.env.API_KEY`.
 // It is assumed to be pre-configured and available in the execution environment.
-const apiKey = process.env.API_KEY;
-if (!apiKey) {
-  throw new Error("API_KEY is not set in environment variables. Please configure it in your deployment environment.");
-}
-
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getPerformanceSummary = async (salesperson: Salesperson, metrics: CalculatedMetrics): Promise<string> => {
   const model = 'gemini-2.5-flash';
